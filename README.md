@@ -2,17 +2,15 @@
 
 ## usersテーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| nickname        | string     | null: false, foreign_key: true |
-| email           | string     | null: false, foreign_key: true |
-| password        | string     | null: false, foreign_key: true |
-| last_name       | string     | null: false, foreign_key: true |
-| first_name      | string     | null: false, foreign_key: true |
-| last_name_kana  | string     | null: false, foreign_key: true |
-| birthday_year   | integer    | null: false, foreign_key: true |
-| birthday_month  | integer    | null: false, foreign_key: true |
-| birthday_day    | integer    | null: false, foreign_key: true |
+| Column            | Type       | Options     |
+| ---------------   | ---------- | ----------- |
+| nickname          | string     | null: false |
+| email             | string     | null: false |
+| encrypted_password| string     | null: false |
+| last_name         | string     | null: false |
+| first_name        | string     | null: false |
+| last_name_kana    | string     | null: false |
+| birthday          | date       | null: false |
 
 ## Association
 - belongs_to :favorite
@@ -23,17 +21,17 @@
 
 ## itemsテーブル
 
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| items_name        | string     | null: false, foreign_key: true |
-| category          | string     | null: false, foreign_key: true |
-| price             | integer    | null: false, foreign_key: true |
-| description_items | string     | null: false, foreign_key: true |
-| items_condition   | string     | null: false, foreign_key: true |
-| shipping_charges  | string     | null: false, foreign_key: true |
-| shipping_area     | string     | null: false, foreign_key: true |
-| shipping_days     | integer    | null: false, foreign_key: true |
-| user              | references | null: false, foreign_key: true |
+| Column               | Type       | Options                        |
+| -----------------    | ---------- | ------------                   |
+| name                 | string     | null: false                    |
+| category_id          | integer    | null: false                    |
+| price                | integer    | null: false                    |
+| description          | string     | null: false                    |
+| condition_id         | integer    | null: false                    |
+| shipping_charges_id  | integer    | null: false                    |
+| shipping_area_id     | integer    | null: false                    |
+| shipping_days_id     | integer    | null: false                    |
+| user                 | references | null: false, foreign_key: true |
 
 ## Association
 - has_one    :buy
@@ -44,11 +42,11 @@
 
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
-| post_code         | integer    | null: false, foreign_key: true |
-| prefecture        | string     | null: false, foreign_key: true |
-| municipality      | string     | null: false, foreign_key: true |
-| address           | string     | null: false, foreign_key: true |
-| phone             | integer    | null: false, foreign_key: true |
+| post_code         | integer    | null: false                    |
+| prefecture        | string     | null: false                    |
+| municipality      | string     | null: false                    |
+| address           | string     | null: false                    |
+| phone             | integer    | null: false                    |
 | user              | references | null: false, foreign_key: true |
 | item              | references | null: false, foreign_key: true |
 
@@ -61,9 +59,9 @@
 
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
-| number            | integer    | null: false, foreign_key: true |
-| expiration        | integer    | null: false, foreign_key: true |
-| security          | string     | null: false, foreign_key: true |
+| number            | integer    | null: false                    |
+| expiration        | integer    | null: false                    |
+| security          | string     | null: false                    |
 | user              | references | null: false, foreign_key: true |
 | buy               | references | null: false, foreign_key: true |
 
@@ -75,7 +73,7 @@
 
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
-| text              | text       | null: false, foreign_key: true |
+| text              | text       | null: false                    |
 | user              | references | null: false, foreign_key: true |
 | item              | references | null: false, foreign_key: true |
 
