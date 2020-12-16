@@ -18,7 +18,6 @@
 - has_many   :items
   has_many   :buys
   has_many   :comments
-  has_many   :cards
   has_many   :favorites
 
 ## itemsテーブル
@@ -43,13 +42,13 @@
 ## buysテーブル
 | Column               | Type       | Options                        |
 | -----------------    | ---------- | ------------                   |
-| user_id              | string     | null: false, foreign_key: true |
-| items_id             | integer    | null: false, foreign_key: true |
+| user_id              | references | null: false, foreign_key: true |
+| items_id             | references | null: false, foreign_key: true |
 
 ## Association
  belongs_to :user
  belongs_to :item
- belongs_to :buy
+ belongs_to :address
 
 ## addressesテーブル
 
@@ -65,7 +64,6 @@
 
 ## Association
   belongs_to :item
-  belongs_to :buy
 
 ## commentsテーブル
 
@@ -77,7 +75,7 @@
 
 ## Association
 - belongs_to :user
-- belongs_to :item
+  belongs_to :item
 
 ## favoritesテーブル
 
