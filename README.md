@@ -18,7 +18,6 @@
 - has_many   :items
   has_many   :buys
   has_many   :comments
-  has_many   :address
   has_many   :cards
   has_many   :favorites
 
@@ -38,51 +37,35 @@
 
 ## Association
   has_one    :buy
-- has_one    :address
 - belongs_to :user
   has_many   :comments
 
-## buyテーブル
+## buysテーブル
 | Column               | Type       | Options                        |
 | -----------------    | ---------- | ------------                   |
-| user_id              | string     | null: false                    |
-| items_id             | integer    | null: false                    |
+| user_id              | string     | null: false, foreign_key: true |
+| items_id             | integer    | null: false, foreign_key: true |
 
 ## Association
  belongs_to :user
- has_one    :item
+ belongs_to :item
+ belongs_to :buy
 
-## addressテーブル
+## addressesテーブル
 
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
-| post_code         | string     | null: false                     |
-| prefecture        | string     | null: false                    |
+| post_code         | string     | null: false                    |
+| prefecture_id     | integer    | null: false                    |
 | municipality      | string     | null: false                    |
 | address           | string     | null: false                    |
-| building          | string     | null: false                   |
-| phone             | string    | null: false                     |
-| user              | references | null: false, foreign_key: true |
-| item              | references | null: false, foreign_key: true |
-
-## Association
-- belongs_to :user
-- has_one    :address
-  belongs_to :item
-
-## cardテーブル
-
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| number            | integer    | null: false                    |
-| expiration        | integer    | null: false                    |
-| security          | string     | null: false                    |
-| user              | references | null: false, foreign_key: true |
+| building          | string     |                                |
+| phone             | string     | null: false                    |
 | buy               | references | null: false, foreign_key: true |
 
 ## Association
-- belongs_to :user
-- belongs_to :address
+  belongs_to :item
+  belongs_to :buy
 
 ## commentsテーブル
 
