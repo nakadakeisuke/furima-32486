@@ -90,6 +90,24 @@ describe User do
       @user.valid?
       expect(@user.errors.full_messages).to include("Email is invalid")
     end
+    it "passwordが半角数字のみの場合は登録できない" do
+      @user.password = "111111"
+      @user.password_confirmation = "111111"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password include both letters and numbers in")  
+    end
+    it "passwordが全角英数字のみの場合は登録できない" do
+      @user.password = "ｌｄｆ１２３"
+      @user.password_confirmation = "ｌｄｆ１２３"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password include both letters and numbers in")  
+    end
+    it "emailが登録済みの時は登録できない" do
+      user1 = create(:user, email:"a@a") 
+      user2 = build(:user, nickname: "a", email: "a@a")
+      user2.valid?
+      expect(user2.errors.full_messages).to include("Email has already been taken")
+    end
   end
  end
 end
