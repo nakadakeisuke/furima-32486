@@ -1,0 +1,13 @@
+class Item < ApplicationRecord
+
+
+
+
+
+
+
+
+
+
+
+end
