@@ -9,11 +9,6 @@ describe User do
     it "nicknameとemail、password、password_confirmation,first_name,last_name,first_name_kana,last_name_kana,birthdayがあれば登録できる" do
       expect(@user).to be_valid
     end
-    it " passwordが6文字以上で英数字混合であれば登録できる " do
-      @user.password = "aaa123"
-      @user.password_confirmation = "aaa123"
-      expect(@user).to be_valid
-    end
   end
 
   context '新規登録がうまくいかない時' do    
@@ -71,6 +66,29 @@ describe User do
       @user.last_name_kana = "火"
       @user.valid?
       expect(@user.errors.full_messages).to include("Last name kana enter only full-width kanji, katakana")
+    end
+    it " passwordが6文字以上でないと登録できない" do
+      @user.password = "aaa12"
+      @user.password_confirmation = "aaa12"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+    end
+    it "passwordが英語のみの場合は登録できない" do
+      @user.password = "aaaaaa"
+      @user.password_confirmation = "aaaaaa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password include both letters and numbers in")  
+    end
+    it "passwordとpassword_confirmationが合致しない場合は登録できない" do
+      @user.password = "aaa123"
+      @user.password_confirmation = "123aaa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")  
+    end
+    it "emailに@がない場合は登録できない" do
+      @user.email = "mailmail"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email is invalid")
     end
   end
  end
