@@ -10,12 +10,10 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :description
-
-   VALID_PRICEL_HALF =/\A[0-9]+\z/
-     validates :price format: {with: VALID_PRICEL_HALF},length: {minimum: 3, maxinum: 7},numericality: { only_integer: true,
-       greater_than: 300, less_than: 10000000
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+   
   end
-  with_options numericality: { other_than: 1 } 
+  with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :shipping_charge_id
     validates :prefecture_id
