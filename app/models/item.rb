@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   has_one_attached :image
+  belongs_to :user
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
   belongs_to_active_hash :condition
@@ -11,12 +12,14 @@ class Item < ApplicationRecord
     validates :name
     validates :description
     validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+    validates :image
    
   end
   with_options numericality: { other_than: 1 } do
     validates :category_id
-    validates :shipping_charge_id
+    validates :shipping_charges_id
     validates :prefecture_id
     validates :shipping_days_id
+    validates :condition_id
   end
 end

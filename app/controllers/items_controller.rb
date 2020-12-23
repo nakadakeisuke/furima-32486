@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: :create
+  before_action :authenticate_user!, only: [:create, :new]
 
   def index
     @item = Item.all
@@ -10,9 +10,9 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @items = Item.new(item_params)
+    @item = Item.new(item_params)
     if @item.save
-      redirect_to items_path
+       redirect_to root_path
     else
       render :new
     end
