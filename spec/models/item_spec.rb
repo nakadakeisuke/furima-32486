@@ -72,6 +72,16 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")    
       end
+      it "priceは半角英数字混合では登録できない" do
+        @item.price = "123fre"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")    
+      end
+      it "priceは半角英数字のみでは登録できない" do
+        @item.price = "jgkgjg"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")    
+      end
     end
   end
 end
