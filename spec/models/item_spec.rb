@@ -28,27 +28,27 @@ describe Item do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it "Categoryが--の場合は登録できない" do
-        @item.category_id = "1"
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
       it "shipping_chargesが--の場合は登録できない" do
-       @item.shipping_charges_id = "1"
+       @item.shipping_charges_id = 1
        @item.valid?
        expect(@item.errors.full_messages).to include("Shipping charges must be other than 1")
       end
       it "shipping_daysが--の場合は登録できない" do
-        @item.shipping_days_id = "1"
+        @item.shipping_days_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping days must be other than 1")
       end
       it "prefectureが--の場合は登録できない" do
-        @item.prefecture_id = "1"
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
       end
       it "conditionが--の場合は登録できない" do
-       @item.condition_id = "1"
+       @item.condition_id = 1
        @item.valid?
        expect(@item.errors.full_messages).to include("Condition must be other than 1")
       end
