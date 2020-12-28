@@ -12,15 +12,3 @@ class CreateAddresses < ActiveRecord::Migration[6.0]
     end
   end
 end
-
-## addressesテーブル
-
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| post_code         | string     | null: false                    |
-| prefecture_id     | integer    | null: false                    |
-| municipality      | string     | null: false                    |
-| address           | string     | null: false                    |
-| building          | string     |                                |
-| phone             | string     | null: false                    |
-| buy               | references | null: false, foreign_key: true |
