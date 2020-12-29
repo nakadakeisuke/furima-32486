@@ -1,6 +1,6 @@
 class UserBuy
-  include ActiveModel::ActiveModel
-  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :minicipality, :address, :building, :phone, :buy
+  include ActiveModel::Model
+  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :municipality, :address, :building, :phone, :buy
 
  with_options presence: true do
    validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
