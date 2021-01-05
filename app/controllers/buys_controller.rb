@@ -1,8 +1,12 @@
 class BuysController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :index]
   before_action :item_find, only:[:index, :create]
 
   def index
     @user_buy = UserBuy.new
+    if @item.buy.present?
+      redirect_to root_path
+    end
   end
 
   def create
