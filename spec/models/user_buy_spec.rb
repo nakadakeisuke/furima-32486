@@ -62,7 +62,7 @@ require 'rails_helper'
           @user_buy.phone = "abe123456o0"
           @user_buy.valid?
         end
-        it "phoneは英数混合だと登録できない" do
+        it "tokenが空だと登録できない" do
           @user_buy.token = nil
           @user_buy.valid?
         end
