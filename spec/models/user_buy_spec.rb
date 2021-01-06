@@ -12,6 +12,10 @@ require 'rails_helper'
         it " user_id,item_id,post_code,prefecture_id,municipality,address,phone,buy_idがあれば購入できる" do
           expect(@user_buy).to be_valid
         end
+        it " 建物名が空でも購入できる" do
+          @user_buy.building = nil
+          expect(@user_buy).to be_valid
+        end
         
       context '購入がうまくいかない時' do    
         it "user_idがない場合は登録できない" do
@@ -56,6 +60,10 @@ require 'rails_helper'
         end
         it "phoneは英数混合だと登録できない" do
           @user_buy.phone = "abe123456o0"
+          @user_buy.valid?
+        end
+        it "phoneは英数混合だと登録できない" do
+          @user_buy.token = nil
           @user_buy.valid?
         end
       end
