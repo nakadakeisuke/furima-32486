@@ -4,7 +4,7 @@ class BuysController < ApplicationController
 
   def index
     @user_buy = UserBuy.new
-    if @item.buy.present?
+    if @item.buy.present? || current_user == @item.user
       redirect_to root_path
     end
   end
