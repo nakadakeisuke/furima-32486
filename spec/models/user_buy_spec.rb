@@ -1,7 +1,10 @@
 require 'rails_helper'
   describe UserBuy do
     before do
-      @user_buy = FactoryBot.build(:user_buy)
+      @user = FactoryBot.create(:user).id
+      @item = FactoryBot.create(:item).id
+      sleep(1)
+      @user_buy = FactoryBot.build(:user_buy, user_id:@user, item_id:@item)
     end
 
     describe '購入機能' do
@@ -39,16 +42,20 @@ require 'rails_helper'
           @user_buy.phone = nil
           @user_buy.valid?
         end
-        it "phoneがない場合は登録できない" do
-          @user_buy.phone = nil
-          @user_buy.valid?
-        end
         it "post_codeは-なしでは購入できない" do
           @user_buy.post_code = "1234567"
           @user_buy.valid?
         end
         it "municipalityが半角では購入できない" do
           @user_buy.municipality = "kridkr"
+          @user_buy.valid?
+        end
+        it "phoneは12桁以上だと登録できない" do
+          @user_buy.phone = "123456789012345"
+          @user_buy.valid?
+        end
+        it "phoneは英数混合だと登録できない" do
+          @user_buy.phone = "abe123456o0"
           @user_buy.valid?
         end
       end
