@@ -22,12 +22,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless current_user.id == @item.user_id
+    unless current_user.id == @item.user_id && @item.buy.present?
       redirect_to action: :index
     end
-    if @item.buy.present?
-      redirect_to action: :index
-    end
+    # if @item.buy.present?
+    #   redirect_to root_path
+    # end
   end
 
   def update
